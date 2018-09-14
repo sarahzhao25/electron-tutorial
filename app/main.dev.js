@@ -11,6 +11,7 @@
  * @flow
  */
 import { app, BrowserWindow } from 'electron';
+import { autoUpdater } from 'electron-updater';
 import MenuBuilder from './menu';
 
 let mainWindow = null;
@@ -53,6 +54,7 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', async () => {
+  autoUpdater.checkForUpdatesAndNotify();
   if (
     process.env.NODE_ENV === 'development' ||
     process.env.DEBUG_PROD === 'true'
